@@ -40,7 +40,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | --- | --- |
 | `npm run dev` | Start the local Next.js development server. |
 | `npm run lint` | Run ESLint. |
-| `npm run typecheck` | Run TypeScript without emitting files. |
+| `npm run typecheck` | Generate route types and run TypeScript without emitting files. |
 | `npm run build` | Create a production build. |
 | `npm run start` | Serve the production build locally. |
 
