@@ -99,19 +99,22 @@ Generated files and vendored dependencies are not edited.
   `develop`.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
-GitHub settings that still need repository-owner configuration.
+the imported GitHub ruleset and remaining deployment setup.
 
 ## Foundation checklist
 
 - [x] App Router, strict TypeScript, ESLint, Tailwind, and npm lockfile.
 - [x] Lint, type-check, and production-build CI workflow.
 - [x] Repository guidance, contribution flow, issue forms, and license.
+- [x] GitHub ruleset imported for `main` and `develop`.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.
 - [ ] Optional 3D, contact, CMS, analytics, or backend features only if needed.
-- [ ] Configure branch protection, deployment environments, and production
-      monitoring when a deployment host is selected.
+- [ ] Choose a deployment host; configure a `production` environment restricted
+      to `main`, provider workflow, monitoring, and rollback.
 
 See [AGENTS.md](./AGENTS.md) for the detailed implementation checklist and
 project-specific agent guidance. See [LICENSE](./LICENSE) for the MIT license.
+The imported branch-ruleset configuration is tracked in
+[github-main-develop-ruleset.json](./github-main-develop-ruleset.json).
