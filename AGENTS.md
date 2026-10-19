@@ -31,7 +31,11 @@ credentials.
 - [x] Add project setup, contribution, branch, CI, license, and future-work
       documentation.
 - [x] Add lint, type-check, and production-build CI checks.
-- [ ] Configure GitHub branch rules and environment/deployment settings.
+- [x] Import the repository branch ruleset protecting `main` and `develop`:
+      pull requests, required `Lint, type-check, and build` check, resolved
+      review threads, no deletion, and no force pushes.
+- [ ] Choose a hosting provider, then configure a production environment
+      restricted to `main` and connect the provider's deployment workflow.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO
