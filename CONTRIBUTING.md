@@ -78,9 +78,9 @@ Prefer squash merging for short-lived task branches if enabled in repository
 settings. Verify the preview and all required checks before merging. The Vercel
 deployment path is documented in
 [docs/vercel-deployment.md](./docs/vercel-deployment.md). GitHub Actions
-deploys production only from `main`; Vercel Git integration is intended for
-preview deployments. Complete the environment and project setup before
-releasing the workflow to `main`.
+deploys production only from `main`; Vercel Git integration is connected and
+intended for preview deployments. Complete the GitHub environment and secret
+setup before releasing the workflow to `main`.
 
 ## GitHub ruleset status and deployment setup
 
@@ -104,14 +104,13 @@ Default branch**.
 
 ### Vercel production environment
 
-Vercel is selected and
+Vercel is selected, the project is connected to this repository, and
 [the production workflow](./.github/workflows/deploy-vercel.yml) is prepared.
-Before merging it to `main`, create the GitHub `production` environment,
-restrict it to the `main` branch, connect the Vercel project, and add the
-required environment secrets. Follow [the setup guide](./docs/vercel-deployment.md)
-for the exact steps. Never expose production credentials to pull requests or
-`develop`. Keep the real custom domain and DNS changes deferred until the
-portfolio is complete.
+Before releasing it to `main`, create the GitHub `production` environment,
+restrict it to the `main` branch, and add the required environment secrets.
+Follow [the setup guide](./docs/vercel-deployment.md) for the exact steps.
+Never expose production credentials to pull requests or `develop`. Keep the
+real custom domain and DNS changes deferred until the portfolio is complete.
 
 ## Foundation scope
 
