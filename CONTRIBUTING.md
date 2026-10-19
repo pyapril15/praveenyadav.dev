@@ -75,10 +75,12 @@ lint, TypeScript checking, and a production build. The workflow requires only
 read access to repository contents and uses no deployment secrets.
 
 Prefer squash merging for short-lived task branches if enabled in repository
-settings. Verify the preview and all required checks before merging. Production
-deployment is not configured by this repository; when a host is selected,
-configure production deployment from `main` only and preview deployment for
-pull requests or `develop` using separate environments.
+settings. Verify the preview and all required checks before merging. The Vercel
+deployment path is documented in
+[docs/vercel-deployment.md](./docs/vercel-deployment.md). GitHub Actions
+deploys production only from `main`; Vercel Git integration is intended for
+preview deployments. Complete the environment and project setup before
+releasing the workflow to `main`.
 
 ## GitHub ruleset status and deployment setup
 
@@ -100,24 +102,16 @@ branch remains `main`; changing it affects repository links and open pull
 requests and should only be done intentionally in **Settings → General →
 Default branch**.
 
-### Next: deployment environment
+### Vercel production environment
 
-No deployment provider or workflow is configured yet. After choosing a
-Next.js-compatible host:
-
-1. Create a GitHub environment named `production` in **Settings → Environments**.
-2. Restrict deployment branches to `main`; add required reviewers only if an
-   independent approver is available.
-3. Add only the secrets and variables required by that provider to the
-   appropriate GitHub environment or hosting project. Never expose production
-   secrets to pull requests or `develop`.
-4. Add and test a provider-specific deployment workflow that targets the
-   `production` environment only on `main`. Use preview deployments for pull
-   requests only when the provider supports safe, isolated previews.
-5. Document how to verify a release and redeploy the last known-good version.
-
-Until a host and its required configuration are selected, do not add deploy
-credentials, provider-specific actions, or a placeholder deployment workflow.
+Vercel is selected and
+[the production workflow](./.github/workflows/deploy-vercel.yml) is prepared.
+Before merging it to `main`, create the GitHub `production` environment,
+restrict it to the `main` branch, connect the Vercel project, and add the
+required environment secrets. Follow [the setup guide](./docs/vercel-deployment.md)
+for the exact steps. Never expose production credentials to pull requests or
+`develop`. Keep the real custom domain and DNS changes deferred until the
+portfolio is complete.
 
 ## Foundation scope
 

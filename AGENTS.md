@@ -34,8 +34,12 @@ credentials.
 - [x] Import the repository branch ruleset protecting `main` and `develop`:
       pull requests, required `Lint, type-check, and build` check, resolved
       review threads, no deletion, and no force pushes.
-- [ ] Choose a hosting provider, then configure a production environment
-      restricted to `main` and connect the provider's deployment workflow.
+- [x] Select Vercel and add a GitHub Actions production workflow triggered
+      only by pushes to `main`; disable duplicate Vercel Git deployments for
+      `main` and `develop`.
+- [ ] Create the GitHub `production` environment restricted to `main`, connect
+      the Vercel project, add its secrets, and verify a production deployment.
+      Keep the real custom domain deferred until the portfolio is complete.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO
