@@ -54,6 +54,14 @@ is a public canonical-origin setting, not a secret. Set it to the real public
 site origin before production deployment. Never put credentials in variables
 prefixed with `NEXT_PUBLIC_`.
 
+## Next implementation step
+
+Before adding real portfolio pages, complete the
+[portfolio content brief](./docs/portfolio-content-brief-template.md) with
+approved profile details, project facts, publication permissions, and contact
+preferences. Do not invent biography, client work, testimonials, or outcome
+metrics.
+
 ## Foundation layout
 
 ```text
