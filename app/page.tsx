@@ -1,3 +1,9 @@
+/**
+ * File: app/page.tsx
+ * Role: Root route entry point.
+ * Use: Renders the current starter page until portfolio content is approved.
+ */
+
 import Image from "next/image";
 
 export default function Home() {
