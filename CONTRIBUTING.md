@@ -80,34 +80,44 @@ deployment is not configured by this repository; when a host is selected,
 configure production deployment from `main` only and preview deployment for
 pull requests or `develop` using separate environments.
 
-## GitHub settings still to configure
+## GitHub ruleset status and deployment setup
 
-Repository settings cannot be established by workflow or documentation files.
-In **Settings → Rules → Rulesets**, create a ruleset targeting `main`:
+The repository owner has imported
+[github-main-develop-ruleset.json](./github-main-develop-ruleset.json) in
+**Settings → Rules → Rulesets**. It targets both `main` and `develop` and
+enforces:
 
-1. Prevent branch deletion and force pushes.
-2. Require a pull request before merging.
-3. Require the CI check named **Lint, type-check, and build** after it has run
-   once and appears in GitHub's status-check selector.
-4. Require resolved conversations if review conversations are used.
-5. Require an approval only when an independent reviewer is available; do not
-   block a solo owner with an impossible approval rule.
-6. Restrict direct pushes if that matches the owner's release policy. Do not
-   require signed commits unless signing is configured.
+- Pull requests before updating either protected branch.
+- The **Lint, type-check, and build** status check, with branches required to
+  be up to date before merging.
+- Resolved review conversations.
+- No branch deletion or force pushes.
+- No required approving review count, so a solo owner is not blocked.
 
-Add a lighter ruleset for `develop` with pull requests and the same CI check if
-the owner wants integration changes gated. The GitHub default is currently
-`main`; keep it for a production-facing landing page, or change it to
-`develop` only if the owner prefers integration work as the landing branch.
-Changing the default branch affects repository links and open pull requests
-and must be done by an owner in **Settings → General → Default branch**.
+If the ruleset is changed in GitHub, update and re-import the JSON so the
+tracked configuration remains an accurate reference. The GitHub default
+branch remains `main`; changing it affects repository links and open pull
+requests and should only be done intentionally in **Settings → General →
+Default branch**.
 
-When deployment hosting is chosen, configure a protected production
-environment requiring `main`; keep production secrets out of pull requests
-and feature branches. Add preview/staging variables only to the matching
-environment. This project currently has no provider, deployment workflow, or
-deployment secrets. For rollback, redeploy the provider's last known-good
-deployment; document and test the provider-specific steps before launch.
+### Next: deployment environment
+
+No deployment provider or workflow is configured yet. After choosing a
+Next.js-compatible host:
+
+1. Create a GitHub environment named `production` in **Settings → Environments**.
+2. Restrict deployment branches to `main`; add required reviewers only if an
+   independent approver is available.
+3. Add only the secrets and variables required by that provider to the
+   appropriate GitHub environment or hosting project. Never expose production
+   secrets to pull requests or `develop`.
+4. Add and test a provider-specific deployment workflow that targets the
+   `production` environment only on `main`. Use preview deployments for pull
+   requests only when the provider supports safe, isolated previews.
+5. Document how to verify a release and redeploy the last known-good version.
+
+Until a host and its required configuration are selected, do not add deploy
+credentials, provider-specific actions, or a placeholder deployment workflow.
 
 ## Foundation scope
 
