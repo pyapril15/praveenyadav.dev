@@ -1,0 +1,29 @@
+# File: .github/ISSUE_TEMPLATE/feature_request.yml
+# Role: Structured feature-request form.
+# Use: Captures user need and constraints before implementation is proposed.
+
+name: Feature request
+description: Propose a portfolio capability or foundation improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User need
+      description: What problem or goal should this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+      description: Describe the desired behavior without prescribing unnecessary implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and acceptance checks
+      description: Include accessibility, privacy, performance, or content constraints.

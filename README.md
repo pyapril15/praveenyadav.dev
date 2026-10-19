@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!--
+File: README.md
+Role: Project setup, architecture, status, and delivery overview.
+Use: Entry point for users and contributors to this portfolio foundation.
+-->
 
-## Getting Started
+# Praveen Yadav Portfolio
 
-First, run the development server:
+This repository is the **foundation** for a personal portfolio site. It is
+not a completed portfolio: the home screen is still the Create Next App
+starter, and no portfolio claims, project examples, 3D scenes, contact form,
+or backend features have been added.
+
+## Technology
+
+- Next.js App Router 16.4.2 and React 19
+- TypeScript with strict checking
+- Tailwind CSS 4
+- ESLint 9 and npm lockfile
+
+The existing `app/` directory is retained instead of moving starter files
+under `src/`. The planned folder layout below is represented with
+documentation-only placeholders until each feature is implemented.
+
+## Getting started
+
+Use a Node.js version supported by the installed Next.js release (20.9 or
+newer; Node.js 22 LTS is recommended), then run:
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local Next.js development server. |
+| `npm run lint` | Run ESLint. |
+| `npm run typecheck` | Generate route types and run TypeScript without emitting files. |
+| `npm run build` | Create a production build. |
+| `npm run start` | Serve the production build locally. |
 
-## Learn More
+There is not yet a test framework or test command. Add tests alongside the
+first implemented behavior rather than introducing unused tooling.
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Copy `.env.example` to `.env.local` for local configuration. `NEXT_PUBLIC_SITE_URL`
+is a public canonical-origin setting, not a secret. Set it to the real public
+site origin before production deployment. Never put credentials in variables
+prefixed with `NEXT_PUBLIC_`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Foundation layout
 
-## Deploy on Vercel
+```text
+app/                         Existing Next.js App Router entry points
+  about/                     Reserved for the future About route
+  contact/                   Reserved for the future Contact route
+  projects/                  Reserved for the future project index/details
+components/
+  contact/                   Future contact UI
+  experience/scenes/         Optional, future 3D experience
+  layout/                    Future shared site layout
+  navigation/                Future accessible navigation
+  projects/                  Future project presentation
+  ui/                        Future reusable UI
+content/                     Future approved, typed local portfolio content
+lib/
+  content/                   Future server-only content access
+  seo/                       Future shared SEO helpers
+  validation/                Future input/content validation
+public/
+  images/{profile,projects,social}/
+  models/                    Optional optimized 3D assets
+tests/{unit,components,e2e}/  Future tests for implemented behavior
+.github/
+  ISSUE_TEMPLATE/            Bug and feature issue forms
+  workflows/                 CI checks
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Folders without implemented behavior contain only a `.gitkeep` placeholder.
+Do not add empty APIs, data layers, or feature abstractions. Next.js special
+files, JSON files, binary assets, and the standard license text cannot carry
+the source comment header; their purpose is documented here instead.
+Generated files and vendored dependencies are not edited.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Delivery and branches
+
+- `main` is the production branch and the current GitHub default branch.
+- `develop` is the integration branch.
+- Start a focused `feat/`, `fix/`, `docs/`, `refactor/`, `test/`, or `chore/`
+  branch from `develop`; open a reviewed pull request back to `develop`.
+- Release reviewed changes from `develop` to `main` through a pull request.
+- Create urgent `hotfix/` branches from `main`, then back-merge the fix to
+  `develop`.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
+GitHub settings that still need repository-owner configuration.
+
+## Foundation checklist
+
+- [x] App Router, strict TypeScript, ESLint, Tailwind, and npm lockfile.
+- [x] Lint, type-check, and production-build CI workflow.
+- [x] Repository guidance, contribution flow, issue forms, and license.
+- [ ] Approved portfolio content and real route pages.
+- [ ] Route metadata, sitemap, robots, social images, and accessibility review.
+- [ ] Tests for real portfolio journeys.
+- [ ] Optional 3D, contact, CMS, analytics, or backend features only if needed.
+- [ ] Configure branch protection, deployment environments, and production
+      monitoring when a deployment host is selected.
+
+See [AGENTS.md](./AGENTS.md) for the detailed implementation checklist and
+project-specific agent guidance. See [LICENSE](./LICENSE) for the MIT license.
