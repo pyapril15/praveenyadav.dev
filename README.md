@@ -51,8 +51,16 @@ first implemented behavior rather than introducing unused tooling.
 
 Copy `.env.example` to `.env.local` for local configuration. `NEXT_PUBLIC_SITE_URL`
 is a public canonical-origin setting, not a secret. Set it to the real public
-site origin before production deployment. Never put credentials in variables
+site origin when the final domain is ready. Never put credentials in variables
 prefixed with `NEXT_PUBLIC_`.
+
+## Deployment
+
+Vercel is the selected host. Production deployments are prepared to run from
+`main` through GitHub Actions; the GitHub `production` environment, Vercel
+project, and its secrets still need to be configured by the repository owner.
+See the [Vercel deployment setup](./docs/vercel-deployment.md). The real custom
+domain is intentionally deferred until the portfolio is complete.
 
 ## Next implementation step
 
@@ -115,12 +123,15 @@ the imported GitHub ruleset and remaining deployment setup.
 - [x] Lint, type-check, and production-build CI workflow.
 - [x] Repository guidance, contribution flow, issue forms, and license.
 - [x] GitHub ruleset imported for `main` and `develop`.
+- [x] Vercel selected; GitHub Actions production deployment workflow added for
+      `main`, with duplicate Git deployments disabled for `main` and `develop`.
+- [ ] Create the GitHub `production` environment restricted to `main`, connect
+      the Vercel project, configure secrets, and verify deployment, monitoring,
+      and rollback. Attach the real domain only after portfolio completion.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.
 - [ ] Optional 3D, contact, CMS, analytics, or backend features only if needed.
-- [ ] Choose a deployment host; configure a `production` environment restricted
-      to `main`, provider workflow, monitoring, and rollback.
 
 See [AGENTS.md](./AGENTS.md) for the detailed implementation checklist and
 project-specific agent guidance. See [LICENSE](./LICENSE) for the MIT license.
