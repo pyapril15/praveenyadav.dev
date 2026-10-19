@@ -1,4 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# File: .gitignore
+# Role: Excludes local, generated, and sensitive files from version control.
+# Use: Applied by Git in this repository.
 
 # dependencies
 /node_modules
@@ -32,6 +34,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel

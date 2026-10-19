@@ -1,3 +1,9 @@
+/*
+ * File: app/globals.css
+ * Role: Global design tokens and base styles.
+ * Use: Imported by the root layout for site-wide presentation.
+ */
+
 @import "tailwindcss";
 
 :root {
