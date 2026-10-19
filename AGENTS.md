@@ -34,8 +34,13 @@ credentials.
 - [x] Import the repository branch ruleset protecting `main` and `develop`:
       pull requests, required `Lint, type-check, and build` check, resolved
       review threads, no deletion, and no force pushes.
-- [ ] Choose a hosting provider, then configure a production environment
-      restricted to `main` and connect the provider's deployment workflow.
+- [x] Select Vercel, create the Next.js project, connect the GitHub repository,
+      set its production branch to `main` and Node runtime to `22.x`, and add a
+      GitHub Actions production workflow. Disable duplicate Vercel Git
+      deployments for `main` and `develop`.
+- [ ] Create the GitHub `production` environment restricted to `main`, add
+      Vercel secrets, and verify a production deployment. Keep the real custom
+      domain deferred until the portfolio is complete.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO
