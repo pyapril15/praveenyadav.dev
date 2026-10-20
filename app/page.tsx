@@ -1,75 +1,155 @@
 /**
  * File: app/page.tsx
- * Role: Root route entry point.
- * Use: Renders the current starter page until portfolio content is approved.
+ * Role: Static-first portfolio landing page.
+ * Use: Introduces the portfolio and marks content areas awaiting approved details.
  */
 
-import Image from "next/image";
+const sections = [
+  { href: "#work", label: "Work" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+
+      <header className="site-header">
+        <a className="wordmark" href="#top" aria-label="Praveen Yadav home">
+          PY<span>.</span>
+        </a>
+        <nav aria-label="Main navigation">
+          {sections.map((section) => (
+            <a key={section.href} href={section.href}>
+              {section.label}
+            </a>
+          ))}
+        </nav>
+        <span className="header-status">
+          <span aria-hidden="true" />
+          Portfolio in progress
+        </span>
+      </header>
+
+      <main id="main-content">
+        <section className="hero section-shell" id="top" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span>Portfolio</span>
+              <span className="eyebrow-divider" aria-hidden="true" />
+              <span>First release</span>
+            </p>
+            <h1 id="hero-title">
+              Praveen
+              <br />
+              <span>Yadav</span>
+              <span className="title-period">.</span>
+            </h1>
+            <p className="hero-description">
+              A home for selected work, background, and ways to connect.
+              Approved details are being gathered before they are published.
+            </p>
+            <a className="text-link" href="#work">
+              Explore the portfolio <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div className="hero-art" aria-hidden="true">
+            <div className="art-grid" />
+            <div className="art-orbit art-orbit-one" />
+            <div className="art-orbit art-orbit-two" />
+            <div className="art-disc">
+              <span>PY</span>
+            </div>
+            <p className="art-caption">A considered space for good work.</p>
+            <span className="art-index">01 / 04</span>
+          </div>
+
+          <div className="hero-footnote">
+            <span>Personal portfolio</span>
+            <span>Content-first · Static-first</span>
+          </div>
+        </section>
+
+        <section
+          className="content-section section-shell"
+          id="work"
+          aria-labelledby="work-title"
+        >
+          <div className="section-heading">
+            <p className="eyebrow">01 / Selected work</p>
+            <h2 id="work-title">Work worth sharing.</h2>
+          </div>
+          <div className="empty-state work-empty">
+            <div className="empty-mark" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div>
+              <p className="empty-kicker">Case studies are in preparation</p>
+              <p className="empty-copy">
+                Project stories will appear here after the details and
+                publication permissions are confirmed.
+              </p>
+            </div>
+            <span className="empty-number" aria-hidden="true">
+              01
+            </span>
+          </div>
+        </section>
+
+        <section
+          className="about-section section-shell"
+          id="about"
+          aria-labelledby="about-title"
+        >
+          <div className="about-label">
+            <p className="eyebrow">02 / About</p>
+            <span className="about-stamp" aria-hidden="true">
+              P
+            </span>
+          </div>
+          <div className="about-copy">
+            <h2 id="about-title">The person behind the work.</h2>
+            <p>
+              A short biography, experience, and areas of focus will be added
+              here once the wording is approved for publication.
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="contact-section section-shell"
+          id="contact"
+          aria-labelledby="contact-title"
+        >
+          <div>
+            <p className="eyebrow">03 / Contact</p>
+            <h2 id="contact-title">Let&apos;s make the next thing matter.</h2>
+          </div>
+          <div className="contact-note">
+            <p>
+              Public contact details and profile links will be added when
+              approved. Nothing private is displayed here.
+            </p>
+            <span className="contact-symbol" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <footer className="site-footer section-shell">
+        <a className="wordmark" href="#top" aria-label="Back to top">
+          PY<span>.</span>
+        </a>
+        <p>Praveen Yadav · Portfolio in progress</p>
+        <a href="#top">Back to top ↑</a>
+      </footer>
+    </>
   );
 }
