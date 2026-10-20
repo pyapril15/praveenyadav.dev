@@ -120,6 +120,8 @@ Generated files and vendored dependencies are not edited.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
 the imported GitHub ruleset and remaining deployment setup.
+See the [Git and GitHub CLI command guide](./docs/git-github-command-guide.md)
+for ordered branch, add, commit, push, PR, merge, and cleanup commands.
 
 ## Foundation checklist
 

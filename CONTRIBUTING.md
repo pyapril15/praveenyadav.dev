@@ -33,6 +33,10 @@ reviewer is unavailable; do not configure a fake approval requirement.
 
 ## Start and publish a task branch
 
+For command syntax and explanations from pre-edit synchronization through
+branch creation, staging, pull requests, merging, and cleanup, see the
+[Git and GitHub CLI command guide](./docs/git-github-command-guide.md).
+
 ```bash
 git fetch origin
 git switch develop
