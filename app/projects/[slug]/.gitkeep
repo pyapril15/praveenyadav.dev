@@ -1,3 +1,0 @@
-# File: app/projects/[slug]/.gitkeep
-# Role: Reserves the future dynamic project detail route directory.
-# Use: Track the planned route location without adding an unimplemented page.
