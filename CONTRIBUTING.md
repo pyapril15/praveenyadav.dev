@@ -73,6 +73,9 @@ tests as passing.
 Every pull request to `develop` or `main` runs the CI workflow: `npm ci`,
 lint, TypeScript checking, and a production build. The workflow requires only
 read access to repository contents and uses no deployment secrets.
+CI also runs weekly on Monday at 04:23 UTC against `main`; see the
+[GitHub Actions runbook](./docs/github-actions-runbook.md) for triggers,
+deployment steps, and maintenance cadence.
 
 Prefer squash merging for short-lived task branches if enabled in repository
 settings. Verify the preview and all required checks before merging. The Vercel
