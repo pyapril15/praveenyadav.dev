@@ -7,9 +7,10 @@ Use: Entry point for users and contributors to this portfolio foundation.
 # Praveen Yadav Portfolio
 
 This repository is the **foundation** for a personal portfolio site. It is
-not a completed portfolio: its routes are blank scaffolds, and no portfolio
-claims, project examples, 3D scenes, contact form, or backend features have
-been added.
+not a completed portfolio: the home route displays a simple in-progress
+message, while interior routes remain blank scaffolds. No portfolio claims,
+project examples, 3D scenes, contact form, or backend features have been
+added.
 
 ## Technology
 
@@ -20,9 +21,9 @@ been added.
 
 The existing `app/` directory is retained as the App Router root. Public
 routes are grouped under `app/(portfolio)/`; the group name does not appear in
-URLs. Supporting source folders are under `src/`. Route files currently
-contain only minimal build-valid placeholders; portfolio content and behavior
-remain unimplemented.
+URLs. Supporting source folders are under `src/`. The home page confirms the
+site is available without inventing profile or project content; other route
+files contain only minimal build-valid placeholders.
 
 ## Getting started
 
@@ -71,9 +72,10 @@ domain is intentionally deferred until the portfolio is complete.
 ## Next implementation step
 
 **Status:** the repository, CI, deployment, and delivery workflow foundations
-are in place. The requested route and source-folder skeleton now exists, but
-portfolio-specific content and behavior have not been implemented. Robots
-blocks indexing and the sitemap is empty until approved content is ready. The
+are in place. The requested route and source-folder skeleton now exists, with
+a visible in-progress landing page; portfolio-specific content and behavior
+have not been implemented. Robots blocks indexing and the sitemap is empty
+until approved content is ready. The
 next step is to complete the
 [portfolio content brief](./docs/portfolio-content-brief-template.md) with
 approved profile details, project facts, publication permissions, audience,
