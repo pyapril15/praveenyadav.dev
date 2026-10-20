@@ -120,6 +120,8 @@ Generated files and vendored dependencies are not edited.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
 the imported GitHub ruleset and remaining deployment setup.
+See the [GitHub Actions runbook](./docs/github-actions-runbook.md) for workflow
+commands, triggers, the weekly CI schedule, and routine deployment checks.
 
 ## Foundation checklist
 
