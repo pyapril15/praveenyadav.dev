@@ -68,11 +68,13 @@ domain is intentionally deferred until the portfolio is complete.
 
 ## Next implementation step
 
-Before adding real portfolio pages, complete the
+**Status:** the repository, CI, production deployment, and delivery workflow
+foundation are in place. Portfolio-specific pages and approved content have
+not been implemented yet. The next step is to complete the
 [portfolio content brief](./docs/portfolio-content-brief-template.md) with
-approved profile details, project facts, publication permissions, and contact
-preferences. Do not invent biography, client work, testimonials, or outcome
-metrics.
+approved profile details, project facts, publication permissions, audience,
+and contact preferences. Then implementation can begin without inventing
+biography, client work, testimonials, or outcome metrics.
 
 ## Foundation layout
 
@@ -138,6 +140,8 @@ for ordered branch, add, commit, push, PR, merge, and cleanup commands.
       Vercel secrets configured.
 - [x] Production deployment verified on the generated Vercel URL; rollback
       instructions documented. The custom domain remains deferred.
+- [x] Git/GitHub command sequence documented; GitHub ruleset and hosting setup
+      are in place.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.

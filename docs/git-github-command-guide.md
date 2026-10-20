@@ -69,15 +69,22 @@ git fetch origin
 
 If the status shows user work, stop and preserve it. Do not overwrite, discard,
 or stage unrelated files. `git fetch` is safe with local edits; switching or
-pulling may not be. Once the worktree is safe to switch, sync `develop`:
+pulling may not be. If the changed files are your own work, finish or safely
+stash that work before switching branches. Never stash work you do not
+understand.
+
+Confirm GitHub's default branch and sync the integration branch:
 
 ```powershell
+gh repo view pyapril15/praveenyadav.dev --json defaultBranchRef
 git switch develop
 git pull --ff-only origin develop
 git status --short --branch
 ```
 
-`git switch develop` selects the integration branch. `git pull --ff-only
+`gh repo view ... --json defaultBranchRef` confirms the repository's current
+default branch. `git switch develop` selects the integration branch.
+`git pull --ff-only
 origin develop` updates it only when Git can fast-forward; it will stop instead
 of creating an unexpected merge. The final status check confirms the branch is
 `develop` and shows whether the worktree is clean. Do not proceed on `main`,
@@ -85,6 +92,9 @@ another task branch, or a worktree containing unrelated edits.
 If `develop` does not exist locally, create it to track the remote once with
 `git switch --track -c develop origin/develop`, then continue with the pull
 and status checks above.
+If `git pull --ff-only` stops because local and remote histories diverged,
+stop and inspect `git status` and `git log --oneline --graph --decorate`; do
+not reset or force-push to make them match.
 
 ## 3. Create a task branch before editing
 
@@ -176,16 +186,18 @@ shared history.
 Using GitHub CLI:
 
 ```powershell
+gh pr list --repo pyapril15/praveenyadav.dev --state open
 gh pr create --base develop --head docs/describe-the-change --title "docs: describe the change" --body "Summary, verification, and impact."
-gh pr view --web
-gh pr checks
+gh pr view <number> --repo pyapril15/praveenyadav.dev
+gh pr checks <number> --repo pyapril15/praveenyadav.dev
 ```
 
 | Command | Meaning |
 | --- | --- |
+| `gh pr list --repo <owner>/<repo> --state open` | Lists open pull requests so you can avoid duplicating work. |
 | `gh pr create --base <target> --head <branch> --title "<title>" --body "<body>"` | Opens a PR from the task branch to the target branch. Normal work targets `develop`; releases target `main`. |
-| `gh pr view --web` | Opens the current branch's PR in a browser. |
-| `gh pr checks` | Shows CI and other required checks for the PR. |
+| `gh pr view <number> --repo <owner>/<repo>` | Displays PR details, including its state and target branch. Add `--web` to open it in a browser. |
+| `gh pr checks <number> --repo <owner>/<repo>` | Shows CI and other required checks for the PR. |
 
 If the PR template is not filled automatically, include the change summary,
 type, exact test commands and results, deployment/security impact, and
@@ -227,6 +239,9 @@ reference locally. Because this repository normally squash-merges task PRs,
 Git may not recognize the local task branch as merged. In that case, verify
 the PR is merged on GitHub and there is no uncommitted work on that branch
 before removing just that local branch with `git branch -D <branch>`.
+Prefer `git branch -d <branch>` first; use `-D` only after those checks,
+because a squash merge does not make the original branch commit an ancestor
+of `develop`.
 
 To delete a remote branch manually instead of using the PR merge option:
 
@@ -246,9 +261,10 @@ git fetch origin
 git switch develop
 git pull --ff-only origin develop
 gh pr create --base main --head develop --title "release: sync develop to main" --body "Release reviewed develop changes to production."
-gh pr checks
 ```
 
+Use `gh pr checks <number> --repo pyapril15/praveenyadav.dev` after creating
+the release PR.
 Review the PR, required checks, and Vercel preview; merge it through GitHub or
 with `gh pr merge` and choose an allowed merge method. A successful merge to
 `main` triggers the production deployment. Check both the CI and Deploy to
@@ -259,6 +275,42 @@ For an urgent fix, start a `hotfix/<description>` branch from `main`, open and
 merge its PR to `main`, then open a follow-up PR to bring the same fix into
 `develop`.
 
+## 9. Final synchronization and branch cleanup
+
+After merging work, update both long-lived local branches from GitHub and
+return to `develop` before starting another task:
+
+```powershell
+git fetch --all --prune
+git switch develop
+git pull --ff-only origin develop
+git switch main
+git pull --ff-only origin main
+git switch develop
+git pull --ff-only origin develop
+git branch -vv
+git branch -r
+git status --short --branch
+```
+
+`git fetch --all --prune` refreshes all remotes and removes stale
+remote-tracking references; it does not delete live GitHub branches. The
+fast-forward-only pulls synchronize local `develop` and `main` without
+creating merge commits. Review both branch lists, then delete only short-lived
+branches whose PRs are merged and whose work is present in the target branch:
+
+```powershell
+git branch -d docs/describe-the-change
+git push origin --delete docs/describe-the-change
+git fetch --all --prune
+```
+
+Do not delete `main` or `develop`, a branch with an open PR, or a branch with
+unmerged work. For a closed-but-unmerged PR, preserve its branch until its
+changes have been intentionally discarded or moved elsewhere. If anything is
+unexpected in the final status, stop and resolve that before beginning new
+work.
+
 ## Useful GitHub CLI help
 
 ```powershell
@@ -266,6 +318,7 @@ gh help
 gh repo --help
 gh pr --help
 gh pr create --help
+gh pr view --help
 gh pr checks --help
 gh pr merge --help
 ```
