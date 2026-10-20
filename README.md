@@ -122,6 +122,8 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
 the imported GitHub ruleset and remaining deployment setup.
 See the [GitHub Actions runbook](./docs/github-actions-runbook.md) for workflow
 commands, triggers, the weekly CI schedule, and routine deployment checks.
+See the [Git and GitHub CLI command guide](./docs/git-github-command-guide.md)
+for ordered branch, add, commit, push, PR, merge, and cleanup commands.
 
 ## Foundation checklist
 
