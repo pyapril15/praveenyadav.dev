@@ -60,10 +60,11 @@ Vercel is the selected host. The Next.js project is connected to this GitHub
 repository, configured for production branch `main` and Node.js 22, and
 production deployments run through GitHub Actions. The GitHub `production`
 environment is restricted to `main`, and its required Vercel secrets are
-configured. The initial workflow run failed before those secrets were added;
-rerun it and verify the deployment. See the
-[Vercel deployment setup](./docs/vercel-deployment.md). The real custom domain
-is intentionally deferred until the portfolio is complete.
+configured. The production deployment is live at
+[praveenyadavdev.vercel.app](https://praveenyadavdev.vercel.app), and both the
+production deploy workflow and CI passed for the current `main` revision. See
+the [Vercel deployment setup](./docs/vercel-deployment.md). The real custom
+domain is intentionally deferred until the portfolio is complete.
 
 ## Next implementation step
 
@@ -119,6 +120,8 @@ Generated files and vendored dependencies are not edited.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for commands, CI expectations, and
 the imported GitHub ruleset and remaining deployment setup.
+See the [GitHub Actions runbook](./docs/github-actions-runbook.md) for workflow
+commands, triggers, the weekly CI schedule, and routine deployment checks.
 
 ## Foundation checklist
 
@@ -131,8 +134,8 @@ the imported GitHub ruleset and remaining deployment setup.
       added with duplicate Git deployments disabled for `main` and `develop`.
 - [x] GitHub `production` environment restricted to `main` with all required
       Vercel secrets configured.
-- [ ] Rerun and verify the production deployment, monitoring, and rollback.
-      Attach the real domain only after portfolio completion.
+- [x] Production deployment verified on the generated Vercel URL; rollback
+      instructions documented. The custom domain remains deferred.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.

@@ -73,6 +73,9 @@ tests as passing.
 Every pull request to `develop` or `main` runs the CI workflow: `npm ci`,
 lint, TypeScript checking, and a production build. The workflow requires only
 read access to repository contents and uses no deployment secrets.
+CI also runs weekly on Monday at 04:23 UTC against `main`; see the
+[GitHub Actions runbook](./docs/github-actions-runbook.md) for triggers,
+deployment steps, and maintenance cadence.
 
 Prefer squash merging for short-lived task branches if enabled in repository
 settings. Verify the preview and all required checks before merging. The Vercel
@@ -80,8 +83,10 @@ deployment path is documented in
 [docs/vercel-deployment.md](./docs/vercel-deployment.md). GitHub Actions
 deploys production only from `main`; Vercel Git integration is connected and
 intended for preview deployments. The GitHub `production` environment and
-required secrets are configured; rerun and verify the initial production
-deployment before treating hosting setup as complete.
+required secrets are configured, and the production workflow has succeeded.
+The current site is available at
+[praveenyadavdev.vercel.app](https://praveenyadavdev.vercel.app); the custom
+domain remains deferred until the portfolio is complete.
 
 ## GitHub ruleset status and deployment setup
 
@@ -108,11 +113,11 @@ Default branch**.
 Vercel is selected, the project is connected to this repository, and
 [the production workflow](./.github/workflows/deploy-vercel.yml) is on `main`.
 The GitHub `production` environment is restricted to `main` and its required
-secrets have been added. The initial run happened before those secrets were
-available, so rerun and verify it as described in
-[the setup guide](./docs/vercel-deployment.md). Never expose production
-credentials to pull requests or `develop`. Keep the real custom domain and DNS
-changes deferred until the portfolio is complete.
+secrets have been added. The production workflow passed and the generated
+Vercel URL is live. See [the setup guide](./docs/vercel-deployment.md) for
+verification and rollback details. Never expose production credentials to
+pull requests or `develop`. Keep the real custom domain and DNS changes
+deferred until the portfolio is complete.
 
 ## Foundation scope
 

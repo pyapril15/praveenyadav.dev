@@ -40,9 +40,9 @@ credentials.
       deployments for `main` and `develop`.
 - [x] Create the GitHub `production` environment restricted to `main` and add
       the required Vercel environment secrets.
-- [ ] Re-run and verify the production deployment, then document monitoring
-      and rollback. Keep the real custom domain deferred until the portfolio
-      is complete.
+- [x] Verify the GitHub Actions production deployment and generated Vercel URL;
+      document the rollback procedure. Keep the real custom domain deferred
+      until the portfolio is complete.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO

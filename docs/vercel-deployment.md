@@ -57,22 +57,26 @@ Never put secret values in source files, workflow YAML, or `.env.example`.
 
 ## Verify the first production deployment
 
-The workflow is already on `main`, but its initial run failed at `vercel pull`
-because the three environment secrets were empty at the time. Now that the
-GitHub environment and secrets are configured:
+The production deployment is verified:
 
-1. Open the [initial failed Deploy to Vercel run](https://github.com/pyapril15/praveenyadav.dev/actions/runs/39253017610).
-2. Choose **Re-run all jobs** so the workflow uses the current environment
-   secrets.
-3. Confirm `vercel pull`, `vercel build --prod`, and
-   `vercel deploy --prebuilt --prod` all succeed.
-4. Open the deployment in Vercel and test its generated URL. Since this is a
-   foundation, it will show the starter page until approved portfolio content
-   is implemented.
+- The [Deploy to Vercel workflow](https://github.com/pyapril15/praveenyadav.dev/actions/runs/39369494769)
+  completed successfully for `main` revision `db2f0be`.
+- The [CI workflow](https://github.com/pyapril15/praveenyadav.dev/actions/runs/39369494676)
+  also completed successfully for that revision.
+- The generated production URL
+  [praveenyadavdev.vercel.app](https://praveenyadavdev.vercel.app) responds
+  successfully. It serves the foundation starter page until approved
+  portfolio content is implemented.
 
-If it fails again, inspect the failed step in the Actions log. Verify secret
-names and values directly in GitHub/Vercel settings; secret values cannot be
-read back from GitHub. Do not paste credentials into logs, issues, or chat.
+The [first deployment attempt](https://github.com/pyapril15/praveenyadav.dev/actions/runs/39253017610)
+failed because the environment secrets had not yet been added. The subsequent
+production run succeeded; no rerun is needed.
+
+For each future release, inspect the **Deploy to Vercel** and **CI** workflow
+runs after merging to `main`, and check the live Vercel URL. If a deployment
+introduces a problem, use the Vercel project's **Deployments** page to promote
+the last known-good production deployment, then fix the source and release
+through the normal `develop` → `main` pull-request flow.
 
 ## Custom domain and rollback
 
@@ -80,10 +84,6 @@ Do not attach the real custom domain or change its DNS during this foundation
 phase. Add and verify the domain only after the portfolio content, metadata,
 accessibility, and release checks are complete. The generated Vercel URL can
 be used to validate the foundation in the meantime.
-
-To roll back a bad release, use the Vercel project's **Deployments** page to
-promote the last known-good production deployment, then fix the source and
-release through the normal `develop` → `main` pull-request flow.
 
 ## References
 
