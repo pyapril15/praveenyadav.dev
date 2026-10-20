@@ -43,6 +43,8 @@ credentials.
 - [x] Verify the GitHub Actions production deployment and generated Vercel URL;
       document the rollback procedure. Keep the real custom domain deferred
       until the portfolio is complete.
+- [x] Document the ordered Git/GitHub command workflow and synchronize local
+      `main` and `develop` with their GitHub branches before starting work.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO
