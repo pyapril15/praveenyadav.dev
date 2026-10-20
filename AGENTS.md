@@ -38,9 +38,11 @@ credentials.
       set its production branch to `main` and Node runtime to `22.x`, and add a
       GitHub Actions production workflow. Disable duplicate Vercel Git
       deployments for `main` and `develop`.
-- [ ] Create the GitHub `production` environment restricted to `main`, add
-      Vercel secrets, and verify a production deployment. Keep the real custom
-      domain deferred until the portfolio is complete.
+- [x] Create the GitHub `production` environment restricted to `main` and add
+      the required Vercel environment secrets.
+- [ ] Re-run and verify the production deployment, then document monitoring
+      and rollback. Keep the real custom domain deferred until the portfolio
+      is complete.
 - [ ] Replace the starter home screen only after portfolio content is approved.
 
 ### Portfolio content and SEO
