@@ -41,31 +41,38 @@ Select the existing `praveenyadav.dev` project. Read `orgId` and `projectId`
 from the ignored local `.vercel/project.json`; do not commit `.vercel/` or
 copy its contents into the repository.
 
-## Remaining GitHub setup
+## GitHub production environment status
 
-Complete these steps before releasing the workflow to `main`:
+The GitHub `production` environment is configured with deployment branches
+restricted to `main`. All three Vercel credentials are present as environment
+secrets:
 
-1. In GitHub, open **Settings → Environments**, create an environment named
-   `production`, and set **Deployment branches and tags** to **Selected
-   branches and tags** with only `main` selected. Configure this restriction
-   before adding credentials. Required reviewers are optional; do not add a
-   self-review requirement for the solo maintainer.
-2. Create a Vercel access token from the account's **Settings → Tokens** page.
-   Use the narrowest available scope for this project/team.
-3. Add these as **environment secrets** on the GitHub `production` environment:
+| Secret | Purpose |
+| --- | --- |
+| `VERCEL_TOKEN` | Authenticates the Vercel CLI. |
+| `VERCEL_ORG_ID` | Selects the Vercel account/team. |
+| `VERCEL_PROJECT_ID` | Selects the linked Vercel project. |
 
-   | Secret | Value |
-   | --- | --- |
-   | `VERCEL_TOKEN` | The Vercel access token created above. |
-   | `VERCEL_ORG_ID` | The `orgId` from `.vercel/project.json`. |
-   | `VERCEL_PROJECT_ID` | The `projectId` from `.vercel/project.json`. |
+Never put secret values in source files, workflow YAML, or `.env.example`.
 
-   Do not put these values in source files, workflow YAML, or `.env.example`.
-4. Merge the reviewed deployment changes to `main`. The workflow runs
-   `vercel pull`, `vercel build --prod`, and `vercel deploy --prebuilt --prod`.
-   Confirm the GitHub Actions run succeeds and inspect the deployment in
-   Vercel. Because this is a foundation, the generated Vercel URL will serve
-   the existing starter page until approved portfolio content is implemented.
+## Verify the first production deployment
+
+The workflow is already on `main`, but its initial run failed at `vercel pull`
+because the three environment secrets were empty at the time. Now that the
+GitHub environment and secrets are configured:
+
+1. Open the [initial failed Deploy to Vercel run](https://github.com/pyapril15/praveenyadav.dev/actions/runs/39253017610).
+2. Choose **Re-run all jobs** so the workflow uses the current environment
+   secrets.
+3. Confirm `vercel pull`, `vercel build --prod`, and
+   `vercel deploy --prebuilt --prod` all succeed.
+4. Open the deployment in Vercel and test its generated URL. Since this is a
+   foundation, it will show the starter page until approved portfolio content
+   is implemented.
+
+If it fails again, inspect the failed step in the Actions log. Verify secret
+names and values directly in GitHub/Vercel settings; secret values cannot be
+read back from GitHub. Do not paste credentials into logs, issues, or chat.
 
 ## Custom domain and rollback
 
