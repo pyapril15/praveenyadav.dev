@@ -7,9 +7,9 @@ Use: Entry point for users and contributors to this portfolio foundation.
 # Praveen Yadav Portfolio
 
 This repository is the **foundation** for a personal portfolio site. It is
-not a completed portfolio: the home screen is still the Create Next App
-starter, and no portfolio claims, project examples, 3D scenes, contact form,
-or backend features have been added.
+not a completed portfolio: its routes are blank scaffolds, and no portfolio
+claims, project examples, 3D scenes, contact form, or backend features have
+been added.
 
 ## Technology
 
@@ -18,9 +18,11 @@ or backend features have been added.
 - Tailwind CSS 4
 - ESLint 9 and npm lockfile
 
-The existing `app/` directory is retained instead of moving starter files
-under `src/`. The planned folder layout below is represented with
-documentation-only placeholders until each feature is implemented.
+The existing `app/` directory is retained as the App Router root. Public
+routes are grouped under `app/(portfolio)/`; the group name does not appear in
+URLs. Supporting source folders are under `src/`. Route files currently
+contain only minimal build-valid placeholders; portfolio content and behavior
+remain unimplemented.
 
 ## Getting started
 
@@ -68,9 +70,11 @@ domain is intentionally deferred until the portfolio is complete.
 
 ## Next implementation step
 
-**Status:** the repository, CI, production deployment, and delivery workflow
-foundation are in place. Portfolio-specific pages and approved content have
-not been implemented yet. The next step is to complete the
+**Status:** the repository, CI, deployment, and delivery workflow foundations
+are in place. The requested route and source-folder skeleton now exists, but
+portfolio-specific content and behavior have not been implemented. Robots
+blocks indexing and the sitemap is empty until approved content is ready. The
+next step is to complete the
 [portfolio content brief](./docs/portfolio-content-brief-template.md) with
 approved profile details, project facts, publication permissions, audience,
 and contact preferences. Then implementation can begin without inventing
@@ -79,35 +83,48 @@ biography, client work, testimonials, or outcome metrics.
 ## Foundation layout
 
 ```text
-app/                         Existing Next.js App Router entry points
-  about/                     Reserved for the future About route
-  contact/                   Reserved for the future Contact route
-  projects/                  Reserved for the future project index/details
-components/
-  contact/                   Future contact UI
-  experience/scenes/         Optional, future 3D experience
-  layout/                    Future shared site layout
-  navigation/                Future accessible navigation
-  projects/                  Future project presentation
-  ui/                        Future reusable UI
-content/                     Future approved, typed local portfolio content
-lib/
-  content/                   Future server-only content access
-  seo/                       Future shared SEO helpers
-  validation/                Future input/content validation
+app/
+  favicon.ico
+  globals.css
+  layout.tsx
+  not-found.tsx
+  robots.ts
+  sitemap.ts
+  (portfolio)/                Shared route group; omitted from public URLs
+    layout.tsx
+    page.tsx                   Home route placeholder
+    about/page.tsx
+    contact/page.tsx
+    projects/page.tsx
+    projects/[slug]/page.tsx
+src/
+  components/
+    experience/
+      ExperienceCanvas.tsx    Reserved optional 3D canvas
+      ExperienceShell.tsx     Reserved optional experience wrapper
+    layout/
+      SiteFooter.tsx
+      SiteHeader.tsx
+    projects/ProjectCard.tsx
+  content/                    Reserved approved, typed portfolio content
+  lib/site.ts                 Reserved shared site constants/helpers
+  types/project.ts            Reserved project content types
 public/
   images/{profile,projects,social}/
-  models/                    Optional optimized 3D assets
-tests/{unit,components,e2e}/  Future tests for implemented behavior
+  models/                     Optional optimized 3D assets
+tests/{unit,components,e2e}/   Reserved tests for implemented behavior
 .github/
   ISSUE_TEMPLATE/            Bug and feature issue forms
   workflows/                 CI checks
 ```
 
-Folders without implemented behavior contain only a `.gitkeep` placeholder.
-Do not add empty APIs, data layers, or feature abstractions. Next.js special
-files, JSON files, binary assets, and the standard license text cannot carry
-the source comment header; their purpose is documented here instead.
+Requested future component/content modules contain only file-purpose headers;
+they are not imported or implemented. No contact API, R3F dependency, CMS,
+database, or other optional feature has been added. Next.js route files include
+only the minimum exports needed to keep the app buildable. Robots blocks
+crawling and the sitemap is empty while these routes contain no content.
+JSON files, binary assets, and generated files cannot carry source comment
+headers; their purpose is documented here instead.
 Generated files and vendored dependencies are not edited.
 
 ## Delivery and branches
@@ -142,6 +159,8 @@ for ordered branch, add, commit, push, PR, merge, and cleanup commands.
       instructions documented. The custom domain remains deferred.
 - [x] Git/GitHub command sequence documented; GitHub ruleset and hosting setup
       are in place.
+- [x] Add the requested App Router route and `src/` source structure without
+      implementing portfolio features or adding optional dependencies.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.

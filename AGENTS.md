@@ -45,7 +45,10 @@ credentials.
       until the portfolio is complete.
 - [x] Document the ordered Git/GitHub command workflow and synchronize local
       `main` and `develop` with their GitHub branches before starting work.
-- [ ] Replace the starter home screen only after portfolio content is approved.
+- [x] Add the requested route/source skeleton without adding portfolio
+      content or optional feature implementations.
+- [ ] Add approved portfolio content and real route behavior only after the
+      content brief is completed.
 
 ### Portfolio content and SEO
 
