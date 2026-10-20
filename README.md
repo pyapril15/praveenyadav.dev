@@ -58,11 +58,12 @@ prefixed with `NEXT_PUBLIC_`.
 
 Vercel is the selected host. The Next.js project is connected to this GitHub
 repository, configured for production branch `main` and Node.js 22, and
-production deployments are prepared to run through GitHub Actions. The GitHub
-`production` environment and its Vercel secrets still need to be configured by
-the repository owner. See the [Vercel deployment setup](./docs/vercel-deployment.md).
-The real custom domain is intentionally deferred until the portfolio is
-complete.
+production deployments run through GitHub Actions. The GitHub `production`
+environment is restricted to `main`, and its required Vercel secrets are
+configured. The initial workflow run failed before those secrets were added;
+rerun it and verify the deployment. See the
+[Vercel deployment setup](./docs/vercel-deployment.md). The real custom domain
+is intentionally deferred until the portfolio is complete.
 
 ## Next implementation step
 
@@ -128,9 +129,10 @@ the imported GitHub ruleset and remaining deployment setup.
 - [x] Vercel project connected to GitHub, production branch set to `main`,
       Node.js 22 configured, and GitHub Actions production deployment workflow
       added with duplicate Git deployments disabled for `main` and `develop`.
-- [ ] Create the GitHub `production` environment restricted to `main`, connect
-      the Vercel project, configure secrets, and verify deployment, monitoring,
-      and rollback. Attach the real domain only after portfolio completion.
+- [x] GitHub `production` environment restricted to `main` with all required
+      Vercel secrets configured.
+- [ ] Rerun and verify the production deployment, monitoring, and rollback.
+      Attach the real domain only after portfolio completion.
 - [ ] Approved portfolio content and real route pages.
 - [ ] Route metadata, sitemap, robots, social images, and accessibility review.
 - [ ] Tests for real portfolio journeys.
